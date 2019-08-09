@@ -37,10 +37,14 @@ class SingleTypeListFragment : Fragment() {
 
     private fun setAllListener() {
         btn1?.setOnClickListener {
-            content.scrollTo(0, target_text.top)
+            content.post {
+                content.smoothScrollTo(0, target_text.top)
+            }
         }
         btn2?.setOnClickListener {
-            content.scrollTo(0, target_text.top)
+            content.post {
+                content.scrollTo(0, target_text.top)
+            }
         }
     }
 
@@ -56,8 +60,6 @@ class SingleTypeListFragment : Fragment() {
     }
 
     private fun initListView() {
-//        var headView = layoutInflater.inflate(R.layout.head_view_layout, null)
-//        listAdapter.addHeaderView(headView)
         toolbar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
             override fun onOffsetChanged(p0: AppBarLayout?, p1: Int) {
 

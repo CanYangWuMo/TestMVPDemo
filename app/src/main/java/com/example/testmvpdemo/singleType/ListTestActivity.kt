@@ -19,6 +19,11 @@ class ListTestActivity : AppCompatActivity() {
             .add(R.id.content,SingleTypeListFragment.newInstance(), SINGLE_TYPE)
             .commit()
     }
+    private fun showScrollFragment(){
+        supportFragmentManager.beginTransaction()
+            .add(R.id.content,ScrollFragment.newInstance(), SINGLE_TYPE)
+            .commit()
+    }
 
     companion object {
         const val SINGLE_TYPE = "SINGLE_TYPE"

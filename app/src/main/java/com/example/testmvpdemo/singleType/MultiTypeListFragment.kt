@@ -9,62 +9,60 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.testmvpdemo.R
-import com.example.testmvpdemo.adapter.SingleTypeAdapter
+import com.example.testmvpdemo.adapter.MultiTypeAdapter
 import com.example.testmvpdemo.adapter.TestSingleTypeModel
+import com.example.testmvpdemo.adapter.model.TestEntity
 
-class SingleTypeListFragment : Fragment() {
-    private var singleTypeList: RecyclerView? = null
-    private var listData = ArrayList<TestSingleTypeModel>()
-    private var listAdapter = SingleTypeAdapter(listData)
+class MultiTypeListFragment : Fragment() {
+    private var listTest: RecyclerView? = null
+    private var listData = ArrayList<TestEntity>()
+    private var adapter = MultiTypeAdapter(listData)
     private var currentPage = 0
     private var TAG = "TAG"
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_single_type_list, container, false)
+        return inflater.inflate(R.layout.fragment_multi_type_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getView(view)
-        initTestData()
-        initListView()
+        initList()
     }
 
-    private fun initTestData() {
+    private fun initList() {
+        initListData()
+//        adapter.setOnLoadMoreListener({
+//            initListData()
+//            Log.d(TAG, "Load More")
+//        }, listTest)
+        listTest?.layoutManager = LinearLayoutManager(context)
+        listTest?.adapter = adapter
+    }
+
+    private fun initListData() {
         if (currentPage > 5) {
             Log.d(TAG, "more than 5 pages")
             return
         }
         var i = 0
         var j = 100
-        while (i < 10) {
+        while (i < 5) {
             var testSingleTypeModel = TestSingleTypeModel(i.toString(), j.toString())
+            var testEntity1 = TestEntity().setEntityType1(testSingleTypeModel)
+            var testEntity2 = TestEntity().setEntityType2(testSingleTypeModel)
             i++
             j++
-            listData.add(testSingleTypeModel)
+            listData.add(testEntity1)
+            listData.add(testEntity2)
         }
         currentPage++
     }
 
-    private fun initListView() {
-        listAdapter?.setOnLoadMoreListener({
-            initTestData()
-            Log.d(TAG, "Load More")
-        }, singleTypeList)
-        var linearLayoutManager = LinearLayoutManager(context)
-        singleTypeList?.layoutManager = linearLayoutManager
-        singleTypeList?.adapter = listAdapter
-    }
-
     private fun getView(view: View) {
-        singleTypeList = view.findViewById(R.id.list_single_type)
+        listTest = view.findViewById(R.id.list_multi_type)
     }
 
     companion object {
-        fun newInstance() = SingleTypeListFragment().apply {
-            var bundle = Bundle()
-//            bundle.putBinder()
-            arguments = bundle
-        }
+        fun newInstance() = MultiTypeListFragment()
     }
 }

@@ -9,7 +9,7 @@ abstract class BaseFragment : Fragment(), BaseContract.View {
     protected var presenter: BasePresenter<BaseFragment>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = BasePresenter()
+//        presenter = BasePresenter()
         presenter?.attachView(this)
     }
 

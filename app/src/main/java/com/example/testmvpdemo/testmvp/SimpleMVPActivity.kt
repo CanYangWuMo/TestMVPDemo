@@ -7,13 +7,13 @@ import com.example.testmvpdemo.R
 import kotlinx.android.synthetic.main.activity_simple_mvp.*
 
 class SimpleMVPActivity : AppCompatActivity(), Contract.View {
-    private var presenter: TestPresenter<SimpleMVPActivity>? = null
+    private var presenter: SimpleMVPPresenter<SimpleMVPActivity>? = null
     private var progressDialog: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_simple_mvp)
-        presenter = TestPresenter()
+        presenter = SimpleMVPPresenter()
         presenter?.attachView(this)
         text_test1?.text = "test Text"
         progressDialog = ProgressDialog(this)

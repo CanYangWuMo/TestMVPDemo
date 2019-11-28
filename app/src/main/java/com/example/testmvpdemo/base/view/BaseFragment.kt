@@ -9,7 +9,7 @@ abstract class BaseFragment : Fragment(), BaseContract.View {
     protected var presenter: BasePresenter<BaseFragment>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        presenter = BasePresenter()
+        presenter = createPresenter()
         presenter?.attachView(this)
     }
 
@@ -18,10 +18,18 @@ abstract class BaseFragment : Fragment(), BaseContract.View {
         super.onDestroy()
     }
 
+    abstract fun createPresenter(): BasePresenter<BaseFragment>
+
     override fun showLoading() {
+//        if (isAttachActivity() && activity is BasePresenterActivity) {
+//            (activity as BasePresenterActivity).showLoading()
+//        }
     }
 
     override fun hideLoading() {
+//        if (isAttachActivity() && activity is BasePresenterActivity) {
+//            (activity as BasePresenterActivity).hideLoading()
+//        }
     }
 
     override fun close() {

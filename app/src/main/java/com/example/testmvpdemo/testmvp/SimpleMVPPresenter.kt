@@ -1,6 +1,6 @@
 package com.example.testmvpdemo.testmvp
 
-class TestPresenter<T : Contract.View> : Contract.Presenter<T>, Contract.ModelCallBack {
+class SimpleMVPPresenter<T : Contract.View> : Contract.Presenter<T>, Contract.ModelCallBack {
     private var view: T? = null
 
     override fun attachView(view: T) {

@@ -2,7 +2,7 @@ package com.example.testmvpdemo.base.mvp
 
 abstract class BaseActionPresenter<M : Any, T : BaseContract.ViewWithModel<M>>(var modelType: Class<M>) :
     BasePresenter<T>(), BaseContract.Presenter<T> {
-    fun runOnUiThread(action: () -> Unit) {
+    private fun runOnUiThread(action: () -> Unit) {
         action.invoke()
     }
 

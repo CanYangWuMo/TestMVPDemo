@@ -7,31 +7,44 @@ import android.support.v7.app.AppCompatActivity
 import com.example.testmvpdemo.base.mvp.BaseContract
 import com.example.testmvpdemo.base.mvp.BasePresenter
 
-abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
-    protected var presenter: BasePresenter<BaseActivity>? = null
+abstract class BasePresenterActivity<P : BasePresenter<V>, V : BaseContract.View> :
+    AppCompatActivity(), BaseContract.View {
+    protected var presenter: P? = null
+    private var progressDialog = ProgressDialogFragment.instance
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
         presenter = createPresenter()
-        presenter?.attachView(this)
+        presenter?.attachView(this as V)
     }
 
     override fun onDestroy() {
         presenter?.detachView()
         super.onDestroy()
     }
-    abstract fun createPresenter():BasePresenter<BaseActivity>
+
+    abstract fun createPresenter(): P
 
     override fun getContext(): Context? {
         return this
     }
 
     override fun showLoading() {
+        if (supportFragmentManager.findFragmentByTag(PROGRESS_DIALOG) == null) {
+            progressDialog.show(supportFragmentManager, PROGRESS_DIALOG)
+        }
     }
 
     override fun hideLoading() {
+        if (supportFragmentManager.findFragmentByTag(PROGRESS_DIALOG) != null) {
+            progressDialog.dismissAllowingStateLoss()
+        }
     }
 
     override fun close() {
+    }
+
+    companion object {
+        const val PROGRESS_DIALOG = "PROGRESS_DIALOG"
     }
 }

@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import com.example.testmvpdemo.base.mvp.BaseContract
 import com.example.testmvpdemo.base.mvp.BasePresenter
 
-abstract class BasePresenterActivity<P : BasePresenter<V>, V : BaseContract.View> :
+abstract class BasePresenterActivity<V : BaseContract.View,P : BasePresenter<V>> :
     AppCompatActivity(), BaseContract.View {
     protected var presenter: P? = null
     private var progressDialog = ProgressDialogFragment.instance

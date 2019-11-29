@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.testmvpdemo.testactionmvp.ActionMVPActivity
+import com.example.testmvpdemo.testactionmvp.fragment.ActionMVPFragment
 import com.example.testmvpdemo.testmvp.SimpleMVPActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -13,9 +14,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         text_main?.setOnClickListener {
-            var intent = Intent()
-            intent.setClass(this, ActionMVPActivity::class.java)
-            startActivity(intent)
+
         }
+    }
+
+    private fun addActionMVPFragment() {
+        if (supportFragmentManager.findFragmentByTag("TestMVP") == null) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.content, ActionMVPFragment.instance, "TestMVP")
+                .commit()
+        }
+    }
+
+    private fun startActionMVPActivity() {
+        var intent = Intent()
+        intent.setClass(this, ActionMVPActivity::class.java)
+        startActivity(intent)
     }
 }

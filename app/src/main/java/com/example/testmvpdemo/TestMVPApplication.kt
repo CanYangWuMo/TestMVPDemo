@@ -3,6 +3,7 @@ package com.example.testmvpdemo
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import com.facebook.stetho.Stetho
 
 class TestMVPApplication : Application() {
     private var mUiThread: Thread? = null
@@ -32,6 +33,7 @@ class TestMVPApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         mUiThread = Thread.currentThread()
+        Stetho.initializeWithDefaults(this)
     }
 
     fun getUiThread(): Thread? {

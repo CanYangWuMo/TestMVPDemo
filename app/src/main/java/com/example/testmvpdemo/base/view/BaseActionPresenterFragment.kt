@@ -1,12 +1,12 @@
 package com.example.testmvpdemo.base.view
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.example.testmvpdemo.base.mvp.BaseActionPresenter
 import com.example.testmvpdemo.base.mvp.BaseContract
 
 abstract class BaseActionPresenterFragment<M : Any, V : BaseContract.ViewWithModel<M>, P : BaseActionPresenter<M, V>> :
-    Fragment(), BaseContract.ViewWithModel<M> {
+    androidx.fragment.app.Fragment(), BaseContract.ViewWithModel<M> {
 
     protected var presenter: P? = null
     private var progressDialog = ProgressDialogFragment.instance

@@ -2,7 +2,7 @@ package com.example.testmvpdemo.base.view
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.testmvpdemo.base.mvp.BaseActionPresenter
 import com.example.testmvpdemo.base.mvp.BaseContract
 

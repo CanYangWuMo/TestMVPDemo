@@ -1,7 +1,7 @@
 package com.example.testmvpdemo.testmvp
 
 import android.app.ProgressDialog
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.testmvpdemo.R
 import kotlinx.android.synthetic.main.activity_simple_mvp.*

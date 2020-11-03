@@ -1,7 +1,7 @@
 package com.example.testmvpdemo.base.mvp
 
 import android.content.Context
-import android.support.annotation.UiThread
+import androidx.annotation.UiThread
 
 class BaseContract {
     interface ViewWithModel<in M> : View {

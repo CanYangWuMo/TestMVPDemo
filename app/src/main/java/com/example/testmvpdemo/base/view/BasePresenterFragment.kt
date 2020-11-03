@@ -1,11 +1,11 @@
 package com.example.testmvpdemo.base.view
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.example.testmvpdemo.base.mvp.BaseContract
 import com.example.testmvpdemo.base.mvp.BasePresenter
 
-abstract class BasePresenterFragment<V : BaseContract.View, P : BasePresenter<V>> : Fragment(),
+abstract class BasePresenterFragment<V : BaseContract.View, P : BasePresenter<V>> : androidx.fragment.app.Fragment(),
     BaseContract.View {
 
     protected var presenter:P? = null

@@ -2,13 +2,13 @@ package com.example.testmvpdemo
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.testmvpdemo.testbackend.TestBackEndService
+import androidx.appcompat.app.AppCompatActivity
 import com.example.testmvpdemo.testactionmvp.ActionMVPActivity
 import com.example.testmvpdemo.testactionmvp.fragment.ActionMVPFragment
 import com.example.testmvpdemo.testbackend.TestApi
+import com.example.testmvpdemo.testbackend.TestBackEndService
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,7 +18,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         text_main?.setOnClickListener {
-
+            var intent = Intent()
+            intent.setClass(this, TestActivity1::class.java)
+            startActivity(intent)
         }
     }
 

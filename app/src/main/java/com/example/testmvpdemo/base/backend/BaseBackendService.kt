@@ -1,5 +1,6 @@
 package com.example.testmvpdemo.base.backend
 
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -20,6 +21,7 @@ abstract class BaseBackendService : IBackendService {
         var httpClient = OkHttpClient.Builder()
         setHttpDefaultClient(httpClient)
         httpClient.addInterceptor(setDefaultInterceptor())
+        httpClient.addNetworkInterceptor(StethoInterceptor())
         interceptors?.forEach {
             httpClient.addInterceptor(it)
         }
@@ -47,5 +49,5 @@ abstract class BaseBackendService : IBackendService {
     /**
      * 设置默认拦截器
      */
-    abstract fun setDefaultInterceptor(): Interceptor
+     abstract fun setDefaultInterceptor(): Interceptor
 }
